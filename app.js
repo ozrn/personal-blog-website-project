@@ -13,7 +13,7 @@ app.use(express.static("public"));
 
 // if we set the view engine to ejs, we don't need to mention the extension of the ejs files!!
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("home", {homeContent: homeStartingContent});
 });
 
 
