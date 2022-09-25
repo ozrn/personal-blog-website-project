@@ -16,6 +16,10 @@ app.get("/", (req, res) => {
   res.render("home", {homeContent: homeStartingContent});
 });
 
+app.get("/about", (req, res) => {
+  res.render("about", {contentForAbout: aboutContent});
+});
+
 
 
 
