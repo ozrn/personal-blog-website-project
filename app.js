@@ -1,4 +1,3 @@
-
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -11,19 +10,30 @@ const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rho
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname + "/views"));
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+const posts = []; // make a global variable to store all post made in post object
 
 // if we set the view engine to ejs, we don't need to mention the extension of the ejs files!!
 app.get("/", (req, res) => {
-  res.render("home", {homeContent: homeStartingContent});
+  res.render("home", {
+    homeContent: homeStartingContent,
+    allPosts: posts
+  });
 });
 
 app.get("/about", (req, res) => {
-  res.render("about", {contentForAbout: aboutContent});
+  res.render("about", {
+    contentForAbout: aboutContent
+  });
 });
 
 app.get("/contact", (req, res) => {
-  res.render("contact", {contentForContact: contactContent});
+  res.render("contact", {
+    contentForContact: contactContent
+  });
 });
 
 app.get("/compose", (req, res) => {
@@ -36,7 +46,8 @@ app.post("/compose", (req, res) => {
     title: req.body.postTitle,
     content: req.body.postBody
   };
-  console.log(post);
+  posts.push(post);
+  res.redirect("/"); // to send our users back to home page/ root route
 });
 
 
