@@ -20,7 +20,9 @@ app.get("/about", (req, res) => {
   res.render("about", {contentForAbout: aboutContent});
 });
 
-
+app.get("/contact", (req, res) => {
+  res.render("contact", {contentForContact: contactContent});
+});
 
 
 
