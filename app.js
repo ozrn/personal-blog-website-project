@@ -55,7 +55,10 @@ app.get("/post/:dailyPost", (req, res) => {
   const requestedPost = _.lowerCase(req.params.dailyPost); // req.params (express routing parameters)
   for (const post of posts) {
     if (requestedPost === _.lowerCase(post.title)) {
-      console.log("match found");
+       res.render("post", {
+         title: post.title,
+         body: post.content
+       });
     }
   }
 });
