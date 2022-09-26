@@ -50,7 +50,14 @@ app.post("/compose", (req, res) => {
   res.redirect("/"); // to send our users back to home page/ root route
 });
 
-
+app.get("/post/:dailyPost", (req, res) => {
+  const requestedPost = req.params.dailyPost; // req.params (express routing parameters)
+  for (const post of posts) {
+    if (requestedPost === post.title) {
+      console.log("match found");
+    }
+  }
+});
 
 app.listen(3000, () => {
   console.log("Listening on port 3000");
